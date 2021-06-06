@@ -8,7 +8,7 @@ class Button extends Component {
         return (
         <button
          className={this.props.isPurple?
-        "background-button":"btn"
+        "btn background-button":"btn"
     }
         onClick={this.props.handelClick}
 >

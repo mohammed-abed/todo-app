@@ -16,12 +16,12 @@ class HomeScreen extends Component {
             type="text"
             placeholder="enter task"/>
 
+            <Button className="btn"
+                    text="Add"
+                    handelClick={()=>{}}
+            />
         </section>
 
-        <Button className="btn"
-             text="Add"
-             handelClick={()=>{}}
-         />
 
         <section
             className="item-section" >
