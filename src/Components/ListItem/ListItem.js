@@ -1,5 +1,6 @@
 import { Component} from 'react';
 import"./Styles.css";
+import Button from "../Button/Button";
 class ListItem extends Component {
     constructor(props) {
         super(props);
@@ -12,16 +13,20 @@ class ListItem extends Component {
                {this.props.task}
            </span>
 
-        <Button text="delet" isPurple={true}>
+        <Button text="delet"
+                isPurple={true}
+        handleClick={()=>{}}
+
+       />
               
 
-        </Button>
+
         </div>
 
         );
         }
         }
-        export default HomeScreen;
+        export default ListItem;
 
 
 
