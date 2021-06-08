@@ -1,5 +1,6 @@
 import { Component} from 'react';
 import "./Styles.css";
+
 class Button extends Component {
     constructor(props) {
         super(props);
@@ -10,8 +11,7 @@ class Button extends Component {
          className={this.props.isPurple?
         "btn background-button":"btn"
     }
-        onClick={this.props.handelClick}
->
+        onClick={this.props.handelClick}>
             {this.props.text}
 
         </button>

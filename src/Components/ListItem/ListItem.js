@@ -7,18 +7,19 @@ class ListItem extends Component {
     }
     render() {
         return(
-        <div className="list-item">       
+        <div className="list-item">
            <span className="task-title"
            >
                {this.props.task}
            </span>
 
-        <Button text="delet"
+        <Button className="background-button"
+            text="delete"
                 isPurple={true}
-        handleClick={()=>{}}
+            handelClick={this.props.handelDelete}
 
-       />
-              
+        />
+
 
 
         </div>
