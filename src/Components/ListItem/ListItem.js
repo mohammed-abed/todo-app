@@ -1,31 +1,21 @@
-import { Component} from 'react';
 import"./Styles.css";
 import Button from "../Button/Button";
-class ListItem extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
+
+function ListItem(props){
         return(
         <div className="list-item">
            <span className="task-title"
            >
-               {this.props.task}
+           {props.task}
            </span>
-
-        <Button className="background-button"
+        <Button
+            className="background-button"
             text="delete"
-                isPurple={true}
-            handelClick={this.props.handelDelete}
-
+            isPurple={true}
+            handelClick={props.handelDelete}
         />
-
-
-
         </div>
-
         );
-        }
         }
         export default ListItem;
 

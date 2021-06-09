@@ -16,7 +16,7 @@
 .input-section{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: row;
     width: 100%;
 }
@@ -33,7 +33,7 @@
     display:flex;
     justify-content:start;
     align-items:start;
-    flex-direction:column;
+    flex-direction:row;
 }
 .add-task:focus{
     border: none;

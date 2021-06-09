@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { useState,useEffect} from 'react';
 import"./Styles.css";
 import Button from '../../Components/Button/Button';
 import {data} from '../../data';
@@ -6,24 +6,62 @@ import ListItem from'../../Components/ListItem/ListItem'
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 
-class HomeScreen extends Component {
-      state = {
-          value:'',
-        list:data,
-         // list:[]
-      };
-   async componentsDidMount(){
+function HomeScreen () {
+   /* const [state,setState]= useState({
+
+        value:'',
+        // list:data,
+        list:[]
+
+    });*/
+
+    const [error,setError]= useState('');
+    const [list,setList]= useState([]);
+    const [value,setValue]= useState('');
+
+
+    /* state = {
+         value:'',
+      // list:data,
+       list:[]
+     };*/
+
+    const fetchData = async ()=>{
+        try {
+
+            const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+
+            //console.log(response);
+
+            setList(
+
+                response.data.splice(0, 30),
+            );
+        }catch(e) {
+            console.log(e);
+        }
+        };
+
+    useEffect(()=> {
+        fetchData();
+        },[]);
+
+
+    /*async componentDidMount(){
      try
      {
          const response = await axios.get("https://jsonplaceholder.typicode.com/todos");
+         console.log(response);
 
-     this.setState({
-        list: response.data,
+         this.setState({
+        list: response.data.splice(0,30),
      });
-   }catch(e){
+
+     }catch(e){
        console.log(e);
     }
-}
+*/
+
      /* componentsDidMount(){
          const fetchData = async ()=>{
               const response=await axios.get("www.google.com")
@@ -36,7 +74,7 @@ class HomeScreen extends Component {
           });
           fetchData();
       }*/
-    render(){
+
         return(
      <div className="inner-container">
            <h1 className="page-title">To do List</h1>
@@ -48,38 +86,40 @@ class HomeScreen extends Component {
             type="text"
             placeholder="enter task"
             onChange={(event)=>{
-                this.setState({
-                    value:event.target.value
+                setValue(
 
-                })
+                    event.target.value
+
+                );
             }}
-            value={this.state.value}
+            value={value}
 
             />
-                {this.state.error ? <span>{this.state.error}</span>: null}
+                {error ? <span>{error}</span>: null}
         </div>
             <Button className="btn"
                     text="Add"
                     handelClick={()=> {
-                        if(this.state.value) {
+                        if(value) {
                             const newArr = [
                                 {
-                                    text: this.state.value,
+                                    title: value,
                                     id: uuidv4()
                                 },
-                                ...this.state.list
+                                ...list
 
                             ];
-                            this.setState({
 
-                                list: newArr,
-                                value: " ",
-                                error: ''
-                            });
+
+                            setError('')
+                            setValue('')
+                            setList(newArr)
+
+
                         } else {
-                            this.setState({
-                                error: "please sumbit"
-                            });
+                            setError(
+                                 "please sumbit"
+                            );
 
                         }
                     }}
@@ -89,18 +129,18 @@ class HomeScreen extends Component {
 
 
         <section className="item-section" >
-               { this.state.list.length ? (
-                this.state.list.map((item) =>
+               { list.length ? (
+                list.map((item) =>
                    (<ListItem
-                   task={item.text}//text
+                   task={item.title}//text
                    key={item.id}
                handelDelete={() => {
-                   const filterdItem = this.state.list.filter(
+                   const filterdItem = list.filter(
                        (filterItem) => filterItem.id != item.id
                    );
-                   this.setState({
-                       list:filterdItem
-                   });
+                   setList(
+                       filterdItem
+                   );
                }}
                />
                    ))
@@ -113,7 +153,7 @@ class HomeScreen extends Component {
      </div>
 
         );
-        }
+
         }
         export default HomeScreen;
 
