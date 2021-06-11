@@ -79,7 +79,7 @@ function HomeScreen () {
      <div className="inner-container">
            <h1 className="page-title">To do List</h1>
 
-        <div className="input-section">
+        <section className="input-section">
             <div className="input-box">
             <input
             className="add-task"
@@ -126,6 +126,7 @@ function HomeScreen () {
 
             />
 
+        </section>
 
 
         <section className="item-section" >
@@ -148,8 +149,7 @@ function HomeScreen () {
                ) }
         </section>
             
-       
-        </div>
+
      </div>
 
         );
